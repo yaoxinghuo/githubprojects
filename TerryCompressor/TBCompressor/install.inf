@@ -1,0 +1,17 @@
+[Version]
+Signature="$CHICAGO$"
+Provider=lifesinger@gmail.com, 2009
+
+[DefaultInstall]
+AddReg=Install_AddReg
+
+[DefaultUnInstall]
+DelReg=Uninstall_DelReg
+
+[Uninstall_DelReg]
+hkcr,"*\Shell\TBCompressor"
+
+[Install_AddReg]
+hkcr,"*\Shell\TBCompressor",,,"&Compress CSS or JS"
+hkcr,"*\Shell\TBCompressor\command",,,"""%01%\compressor.cmd"" ""%%1"""
+
