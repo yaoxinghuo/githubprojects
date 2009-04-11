@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>Showcase.html</welcome-file>
+  </welcome-file-list>
+  
+  <!-- Servlets -->
+  <servlet>
+    <servlet-name>clickButtonResponseServlet</servlet-name>
+    <servlet-class>net.s17fabu.vip.gwt.showcase.server.content.widgets.ClickButtonResponseServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>clickButtonResponseServlet</servlet-name>
+    <url-pattern>/showcase/clickButtonResponse</url-pattern>
+  </servlet-mapping>
+
+</web-app>
