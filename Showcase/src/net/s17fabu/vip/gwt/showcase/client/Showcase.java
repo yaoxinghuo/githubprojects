@@ -188,6 +188,7 @@ public class Showcase implements EntryPoint {
    * This is the entry point method.
    */
   public void onModuleLoad() {
+	  RootPanel.get("loading_div").setVisible(false);
     // Create the constants
     ShowcaseConstants constants = (ShowcaseConstants) GWT.create(ShowcaseConstants.class);
 
