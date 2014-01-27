@@ -6,5 +6,7 @@ package com.terrynow.test;
  * @description
  */
 public class Test1 {
-
+	public static void main(String[] args) {
+		
+	}
 }
