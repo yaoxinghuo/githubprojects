@@ -16,6 +16,8 @@ import java.io.OutputStreamWriter;
  * @description 将Xcode的模板文件批量修改，一个是找到Created by ___FULLUSERNAME___ on
  *              ___DATE___. 添加一个时间___TIME___ 另一件事情是格式化代码，使用之前确保IOS_TEMPLATE_PATH
  *              和MACOS_TWMPLATE_PATH的文件已经备份 搞成类似下面这样，和eclipse差不多
+ *              
+ *              如果提示没权限，那么线build成fat jar，然后在sudo java -jar xxx.jar
  */
 //
 // TRVSeciewController.m
