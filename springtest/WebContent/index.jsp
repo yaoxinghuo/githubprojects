@@ -48,8 +48,11 @@
 							'fileTypeExts' : '*.jpg;*.jpeg;*.png;*.gif;*.txt',
 							'multi' : false,
 							//'buttonImage' : 'img/liulan1.png',
+							'buttonText' : '浏览...',
 							//'queueID' : 'fileQueue',
 							'fileSizeLimit' : 10485760,
+							//这里可以上传SESSION VALUE这些来验证身份，flash中得不到session这个是个flash的bug
+							'formData'      : {'someKey' : 'someValue', 'someOtherKey' : 1},
 							onUploadError : function(file, errorCode, errorMsg, errorString) {
 								alert('The file ' + file.name + ' could not be uploaded: ' + errorString);
 							},
