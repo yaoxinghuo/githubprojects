@@ -82,7 +82,7 @@ public class AccountController {
 		StringBuilder sb = new StringBuilder();
 		sb.append("username:" + user.getUsername());
 		sb.append(",password:" + user.getPassword());
-		System.out.println(sb);
+		System.out.println(sb.toString());
 		return sb.toString();
 	}
 

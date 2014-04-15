@@ -51,6 +51,26 @@
 			<value>${jdbc.password}</value>
 		</property>
 	</bean>
-	<!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->
-	<!-- <tx:annotation-driven mode="aspectj" /> -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+<!-- 	<tx:annotation-driven mode="aspectj" /> -->
+	
+	<bean id="schedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="testCronTrigger"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="testCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean" >
+		<property name="jobDetail" ref="testSchedule"/>
+		<property name="cronExpression">
+			<value>0 29 13 ? * *</value><!-- 举例"0 15 10 ? * *" 每天上午10:15触发-->
+		</property>
+	</bean>
+	
+	<bean id="testSchedule"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="dataTask" />
+		<property name="targetMethod" value="doDataTask" />
+	</bean>
 </beans>

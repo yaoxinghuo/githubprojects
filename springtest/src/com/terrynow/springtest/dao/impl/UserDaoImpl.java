@@ -1,6 +1,7 @@
 package com.terrynow.springtest.dao.impl;
 
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,8 +24,9 @@ public class UserDaoImpl implements IUserDao {
 	public User getUserByNo(final String no) {
 		if (no == null)
 			return null;
-		Query query = sessionFactory.getCurrentSession().createQuery(
-				"from User u where u.no=:no");
+		Session s = sessionFactory.getCurrentSession();
+		System.out.println("get session:" + (s == null));
+		Query query = s.createQuery("from User u where u.no=:no");
 		query.setString("no", no);
 		return (User) query.uniqueResult();
 	}
