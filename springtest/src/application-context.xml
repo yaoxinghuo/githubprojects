@@ -54,6 +54,7 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 <!-- 	<tx:annotation-driven mode="aspectj" /> -->
 	
+	<!-- 以下是排程的测试，要加这个依赖包org.quartz-scheduler，但是貌似不能使用2.0以上的，用的1.8.6的版本 -->
 	<bean id="schedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
 			<list>

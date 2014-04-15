@@ -56,6 +56,16 @@ public class AccountController {
 		return "/account";
 	}
 
+	/**
+	 * 
+	 * @author Terry
+	 * @date Apr 15, 2014 1:46:45 PM
+	 * @description 这是redirect的例子
+	 * 
+	 * @param user
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/addUser")
 	public String addUser(User user, HttpServletRequest request) {
 		return "redirect:/user/getAllUser";
@@ -77,6 +87,15 @@ public class AccountController {
 		return "ResponseBody";
 	}
 
+	/**
+	 * 
+	 * @author Terry
+	 * @date Apr 15, 2014 1:45:30 PM
+	 * @description 加了jackson依赖包后，spring自动检测有这个包，那么输入和输出的Entity都会转成json
+	 * 
+	 * @param user
+	 * @return
+	 */
 	@RequestMapping("/userjson")
 	public @ResponseBody String userjson(@RequestBody User user) {
 		StringBuilder sb = new StringBuilder();
