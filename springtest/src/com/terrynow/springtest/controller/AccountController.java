@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -59,12 +60,14 @@ public class AccountController {
 	public String addUser(User user, HttpServletRequest request) {
 		return "redirect:/user/getAllUser";
 	}
-	
+
 	/**
 	 * 
 	 * @author Terry
 	 * @date Apr 15, 2014 10:44:57 AM
-	 * @description  在SpringMVC中可以在Controller的某个方法上加@ResponseBody注解，表示该方法的返回结果直接写入HTTP response body中。 
+	 * @description 
+	 *              在SpringMVC中可以在Controller的某个方法上加@ResponseBody注解，表示该方法的返回结果直接写入HTTP
+	 *              response body中。
 	 * 
 	 * @param request
 	 * @return
@@ -73,19 +76,25 @@ public class AccountController {
 	public @ResponseBody String testjson(HttpServletRequest request) {
 		return "ResponseBody";
 	}
-	
+
 	@RequestMapping("/userjson")
 	public @ResponseBody String userjson(@RequestBody User user) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("username:"+user.getUsername());
-		sb.append(",password:"+user.getPassword());
+		sb.append("username:" + user.getUsername());
+		sb.append(",password:" + user.getPassword());
 		System.out.println(sb);
 		return sb.toString();
 	}
-	
-	@RequestMapping(value="/userjson2/{no}", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/userjson2/{no}", method = RequestMethod.GET)
 	public @ResponseBody User userjson2(@PathVariable String no) {
 		User user = userService.getUserByNo(no);
 		return user;
+	}
+
+	@RequestMapping("/greeting")
+	public @ResponseBody String greeting(
+			@RequestParam(value = "name", required = false, defaultValue = "World") String name) {
+		return "Hello, " + name;
 	}
 }
