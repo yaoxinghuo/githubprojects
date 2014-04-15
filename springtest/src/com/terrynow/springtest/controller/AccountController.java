@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -70,5 +72,20 @@ public class AccountController {
 	@RequestMapping("/testjson")
 	public @ResponseBody String testjson(HttpServletRequest request) {
 		return "ResponseBody";
+	}
+	
+	@RequestMapping("/userjson")
+	public @ResponseBody String userjson(@RequestBody User user) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("username:"+user.getUsername());
+		sb.append(",password:"+user.getPassword());
+		System.out.println(sb);
+		return sb.toString();
+	}
+	
+	@RequestMapping(value="/userjson2/{no}", method = RequestMethod.GET)
+	public @ResponseBody User userjson2(@PathVariable String no) {
+		User user = userService.getUserByNo(no);
+		return user;
 	}
 }

@@ -1,5 +1,7 @@
 package com.terrynow.springtest.service.intf;
 
+import com.terrynow.springtest.entity.User;
+
 
 /**
  * @author Terry E-mail: yaoxinghuo at 126 dot com
@@ -8,4 +10,6 @@ package com.terrynow.springtest.service.intf;
  */
 public interface IUserService {
 	public String test();
+	
+	public User getUserByNo(String no);
 }

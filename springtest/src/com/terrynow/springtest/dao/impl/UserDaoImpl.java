@@ -21,6 +21,8 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public User getUserByNo(final String no) {
+		if (no == null)
+			return null;
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"from User u where u.no=:no");
 		query.setString("no", no);

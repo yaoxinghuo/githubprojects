@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.terrynow.springtest.dao.intf.IUserDao;
+import com.terrynow.springtest.entity.User;
 import com.terrynow.springtest.service.intf.IUserService;
 
 /**
@@ -26,6 +27,11 @@ public class UserServiceImpl implements IUserService {
 	public String test() {
 		String s = "type1 count: " + userDao.getCountUsers(1);
 		return s;
+	}
+
+	@Override
+	public User getUserByNo(String no) {
+		return userDao.getUserByNo(no);
 	}
 
 }
