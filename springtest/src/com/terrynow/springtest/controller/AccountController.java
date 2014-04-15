@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.terrynow.springtest.entity.User;
 import com.terrynow.springtest.service.intf.IUserService;
+import com.terrynow.springtest.util.JsonResult;
 
 /**
  * @author Terry E-mail: yaoxinghuo at 126 dot com
@@ -49,6 +50,11 @@ public class AccountController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@RequestMapping("/test2")
+	public @ResponseBody JsonResult test2() {
+		return new JsonResult(true, "测试");
 	}
 
 	@RequestMapping("/toAddUser")
