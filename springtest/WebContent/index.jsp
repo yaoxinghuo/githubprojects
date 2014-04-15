@@ -52,8 +52,12 @@
 							//'queueID' : 'fileQueue',
 							'fileSizeLimit' : 10485760,
 							//这里可以上传SESSION VALUE这些来验证身份，flash中得不到session这个是个flash的bug
-							'formData'      : {'someKey' : 'someValue', 'someOtherKey' : 1},
-							onUploadError : function(file, errorCode, errorMsg, errorString) {
+							'formData'      : {'someKey' : 'someValue', 'someOtherKey' : 11},
+							//如果加下面这句，可以在上传的时候动态的修改参数
+							'onUploadStart' : function(file) {
+								$("#file_upload").uploadify("settings", 'formData', {'someKey' : 'someValue', 'someOtherKey' : 222});
+					        },
+							'onUploadError' : function(file, errorCode, errorMsg, errorString) {
 								alert('The file ' + file.name + ' could not be uploaded: ' + errorString);
 							},
 							'onUploadSuccess' : function(file, data, response) {
