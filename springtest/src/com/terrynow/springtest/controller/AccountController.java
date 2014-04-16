@@ -116,7 +116,7 @@ public class AccountController {
 		StringBuilder sb = new StringBuilder();
 		sb.append("username:" + user.getUsername());
 		sb.append(",password:" + user.getPassword());
-		System.out.println(sb.toString());
+		System.out.println("userinfo: " + sb.toString());
 		return sb.toString();
 	}
 
