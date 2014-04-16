@@ -48,14 +48,6 @@ public class User implements Serializable {
 	private boolean disabled;// 账户是否被禁用？false否，true是，被禁用了
 	private double balance = 0;// 账户余额
 
-	private int type;// 普通人员 0不是 1学生 2老师 3校外用户
-	private int leader;// 领导 0 不是领导 1院级领导 2处级领导 3校级领导
-	private int admin;// 管理人员 0不是管理人员 1设备秘书 2技术责任人 3 管理责任人 4实验室主任
-						// 5设备秘书+管理责任人(1+3)
-	private int etype;// 用户权限类型 暂定 1注册用户访问 2VIP用户访问 3绝密用户访问
-	private String balanceId;// 账户结算余额ID，比如他是学生，必须使用老师的帐号的余额,对应到另一个User的ID
-
-
 	@Id
 	@Column(length = 32)
 	@GeneratedValue(generator = "system-uuid")
@@ -123,46 +115,6 @@ public class User implements Serializable {
 
 	public double getBalance() {
 		return balance;
-	}
-
-	public void setType(int type) {
-		this.type = type;
-	}
-
-	public int getType() {
-		return type;
-	}
-
-	public void setEtype(int etype) {
-		this.etype = etype;
-	}
-
-	public int getEtype() {
-		return etype;
-	}
-
-	public void setBalanceId(String balanceId) {
-		this.balanceId = balanceId;
-	}
-
-	public String getBalanceId() {
-		return balanceId;
-	}
-
-	public void setLeader(int leader) {
-		this.leader = leader;
-	}
-
-	public int getLeader() {
-		return leader;
-	}
-
-	public void setAdmin(int admin) {
-		this.admin = admin;
-	}
-
-	public int getAdmin() {
-		return admin;
 	}
 
 	public String getEmail() {
