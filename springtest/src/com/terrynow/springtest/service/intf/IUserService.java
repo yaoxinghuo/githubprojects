@@ -1,6 +1,7 @@
 package com.terrynow.springtest.service.intf;
 
 import com.terrynow.springtest.entity.User;
+import com.terrynow.springtest.util.JsonResult;
 
 
 /**
@@ -12,4 +13,6 @@ public interface IUserService {
 	public String test();
 	
 	public User getUserByNo(String no);
+	
+	public JsonResult listAccounts(int start, int limit);
 }

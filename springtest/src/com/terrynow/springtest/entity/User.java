@@ -10,6 +10,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author xinghuo.yao Email: yaoxinghuo at 126 dot com
  * @version create: May 18, 2009 2:38:07 PM
@@ -90,6 +92,15 @@ public class User implements Serializable {
 		this.mobile = mobile;
 	}
 
+	/**
+	 * 
+	 * @author xinghuo.yao
+	 * @date 2014年4月16日 下午12:28:39
+	 * @description 测试不要输出password
+	 * 
+	 * @return
+	 */
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}

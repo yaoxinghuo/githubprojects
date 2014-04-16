@@ -1,5 +1,7 @@
 package com.terrynow.springtest.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -32,13 +34,19 @@ public class UserDaoImpl implements IUserDao {
 	}
 
 	@Override
-	public long getCountUsers(int type) {
+	public long getCountUsers() {
 		String sql = "select count(u) from User u";
-		if (type != -1)
-			sql += " where u.type=:type";
 		Query query = sessionFactory.getCurrentSession().createQuery(sql);
-		if (type != -1)
-			query.setParameter("type", type);
 		return (Long) query.uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> getUsers(int start, int limit) {
+		String sql = "from User u";
+		Query query = sessionFactory.getCurrentSession().createQuery(sql);
+		query.setFirstResult(start);
+		query.setMaxResults(limit);
+		return query.list();
 	}
 }

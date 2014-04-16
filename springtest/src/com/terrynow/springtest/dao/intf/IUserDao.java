@@ -1,5 +1,7 @@
 package com.terrynow.springtest.dao.intf;
 
+import java.util.List;
+
 import com.terrynow.springtest.entity.User;
 
 /**
@@ -10,5 +12,7 @@ import com.terrynow.springtest.entity.User;
 public interface IUserDao {
 	public User getUserByNo(String no);
 
-	public long getCountUsers(int type);
+	public long getCountUsers();
+
+	public List<User> getUsers(int start, int limit);
 }

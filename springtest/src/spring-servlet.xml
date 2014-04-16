@@ -9,7 +9,20 @@
     http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
-	<mvc:annotation-driven />
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean
+                class="org.springframework.http.converter.StringHttpMessageConverter" />
+            <bean
+                class="org.springframework.http.converter.ResourceHttpMessageConverter" />
+            
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="objectMapper" ref="customObjectMapper"></property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	 <bean id="customObjectMapper" class="com.terrynow.springtest.util.CustomObjectMapper"/>
 	<!-- 把标记了@Controller注解的类转换为bean -->
 	<context:component-scan base-package="com.terrynow.springtest.controller" />
 	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->

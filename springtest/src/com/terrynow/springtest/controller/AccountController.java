@@ -32,6 +32,13 @@ public class AccountController {
 	@Resource(name = "userService")
 	private IUserService userService;
 
+	@RequestMapping(value = "/accounts")
+	public @ResponseBody JsonResult listAccounts(
+			@RequestParam(value = "start", required = true) int start,
+			@RequestParam(value = "limit", required = true) int limit) {
+		return userService.listAccounts(start, limit);
+	}
+
 	@RequestMapping(value = "/account", method = RequestMethod.GET)
 	public ModelAndView findAllAccounts() throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -54,7 +61,9 @@ public class AccountController {
 
 	@RequestMapping("/test2")
 	public @ResponseBody JsonResult test2() {
-		return new JsonResult(true, "测试");
+		JsonResult jr = new JsonResult(true, "测试");
+		jr.addKeyValue("abc", 123);
+		return jr;
 	}
 
 	@RequestMapping("/toAddUser")
