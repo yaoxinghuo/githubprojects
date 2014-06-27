@@ -15,6 +15,8 @@ public class YoukuVideoParser {
 			.compile(".youku\\.com\\/v_show\\/id_([a-zA-Z0-9_]+)\\.html");
 
 	public static String parserStreamFromUrl(String urlRaw) {
+		if (urlRaw == null)
+			return null;
 		String[] parts = urlRaw.split("\\s");
 		String url = parts[0];
 		Matcher matcher = regPattern.matcher(url);
