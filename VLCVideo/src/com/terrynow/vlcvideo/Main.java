@@ -16,6 +16,8 @@ import com.terrynow.vlcvideo.youku.YoukuVideoParser;
  * @description
  */
 public class Main {
+	private static boolean threadStopFlag = false;
+
 	public static void main(String[] args) throws Exception {
 		while (true) {
 			String clipContent = retriveContentFromClipBoard();
@@ -25,12 +27,14 @@ public class Main {
 			if (clipStream != null) {
 				prompt = prompt
 						+ "Detect stream from clipboard, press enter or [0|1|2] to launch.\n";
+				new DefaultThread(clipStream).start();
 			}
 			String url = readUserInput(prompt);
 			if (url != null && "exit".equals(url.toLowerCase())) {
 				System.out.println("bye!");
 				break;
 			}
+			threadStopFlag = true;
 			if (url != null && url.trim().length() > 0) {
 				// 直接输入了0/1/2这种
 				if (url.trim().length() == 1 && clipStream != null) {
@@ -97,4 +101,41 @@ public class Main {
 		InputStreamReader is_reader = new InputStreamReader(System.in);
 		return new BufferedReader(is_reader).readLine();
 	}
+
+	static class DefaultThread extends Thread {
+		private String stream;
+
+		public DefaultThread(String stream) {
+			this.stream = stream;
+		}
+
+		@Override
+		public void run() {
+			System.out.print("Default stream from clipboard, wait seconds: ");
+			for (int i = 0; i < 3; i++) {
+				System.out.print(3 - i);
+				try {
+					Thread.sleep(300L);
+					System.out.print(".");
+					Thread.sleep(300L);
+					System.out.print(".");
+					Thread.sleep(300L);
+					System.out.print(".");
+				} catch (InterruptedException e) {
+				}
+				if (threadStopFlag)
+					break;
+			}
+			if (!threadStopFlag) {
+				try {
+					launchVLC(stream);
+				} catch (Exception e) {
+				}
+				System.out.println("\tDone");
+				System.out.println("default stream from clipboard: " + stream);
+				System.exit(0);
+			}
+		}
+	}
+
 }
