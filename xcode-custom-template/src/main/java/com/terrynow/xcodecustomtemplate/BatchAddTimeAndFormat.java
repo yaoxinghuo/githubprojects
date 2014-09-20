@@ -36,7 +36,7 @@ public class BatchAddTimeAndFormat {
 	public static final String MACOS_TWMPLATE_PATH = "/Applications/Xcode.app/Contents/Developer/Library/Xcode/Templates/File Templates";
 	// 扩展名
 	public static final String[] TEMPLATE_EXT = new String[] { ".m", ".h",
-			".cpp", ".pch", ".c" };
+			".cpp", ".pch", ".c", ".swift" };
 	private static boolean uncrustify = true;// 是否需要格式化代码
 	private static String uncrustifyConfig = null;
 
