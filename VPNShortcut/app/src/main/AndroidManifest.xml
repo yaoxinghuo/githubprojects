@@ -33,6 +33,24 @@
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
 		</activity>
+		<activity android:name=".WechatScanShortcutCreateActivity"
+				  android:icon="@drawable/ic_wechat_scan"
+				  android:label="@string/create_wechat_scan_shortcut">
+
+			<intent-filter>
+				<action android:name="android.intent.action.CREATE_SHORTCUT" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+		<activity android:name=".AlipayShortcutCreateActivity"
+				  android:icon="@drawable/ic_alipay"
+				  android:label="@string/create_alipay_shortcut">
+
+			<intent-filter>
+				<action android:name="android.intent.action.CREATE_SHORTCUT" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
 	</application>
 
 </manifest>

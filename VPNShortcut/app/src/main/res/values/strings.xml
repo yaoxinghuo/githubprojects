@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">VPN</string>
     <string name="create_vpn_shortcut">Create VPN Shortcut</string>
+    <string name="create_wechat_scan_shortcut">Create Wechat Scan Shortcut</string>
+    <string name="create_alipay_shortcut">Create AliPay Shortcut</string>
+    <string name="wechat_scan_name">WeScan</string>
+    <string name="alipay_pay">AliPay</string>
 </resources>
