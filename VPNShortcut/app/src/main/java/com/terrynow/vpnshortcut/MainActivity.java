@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
         // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
 
-        startService(new Intent(this, NotificationListener.class));
+//        startService(new Intent(this, NotificationListener.class));
         finish();
     }
 }
