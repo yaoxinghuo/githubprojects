@@ -54,12 +54,12 @@
 			</intent-filter>
 		</activity>
 
-		<service android:name=".NotificationListener" android:label="VPNShortcut"
-				 android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
-			<intent-filter>
-				<action android:name="android.service.notification.NotificationListenerService" />
-			</intent-filter>
-		</service>
+		<!--<service android:name=".NotificationListener" android:label="VPNShortcut"-->
+				 <!--android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">-->
+			<!--<intent-filter>-->
+				<!--<action android:name="android.service.notification.NotificationListenerService" />-->
+			<!--</intent-filter>-->
+		<!--</service>-->
 
 		<!--<receiver android:enabled="true" android:name=".BootUpReceiver"-->
 				  <!--android:permission="android.permission.RECEIVE_BOOT_COMPLETED">-->
