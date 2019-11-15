@@ -26,12 +26,10 @@ public class ShortcutCreateActivity extends Activity {
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		final Intent shortcutIntent = new Intent("android.net.vpn.SETTINGS");
-		final ShortcutIconResource iconResource = ShortcutIconResource
-				.fromContext(this, R.drawable.ic_vpn);
+		final ShortcutIconResource iconResource = ShortcutIconResource.fromContext(this, R.drawable.ic_vpn);
 		final Intent intent = new Intent();
 		intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
-		intent.putExtra(Intent.EXTRA_SHORTCUT_NAME,
-				getString(R.string.app_name));
+		intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, getString(R.string.app_name));
 		intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, iconResource);
 		setResult(RESULT_OK, intent);
 		// Toast.makeText(this, "shortcut created", Toast.LENGTH_SHORT).show();
