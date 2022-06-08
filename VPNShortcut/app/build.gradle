@@ -6,9 +6,9 @@ android {
     defaultConfig {
         applicationId "com.terrynow.vpnshortcut"
         minSdkVersion 21
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 24
+        versionCode 110
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
