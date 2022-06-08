@@ -19,6 +19,18 @@
 			android:allowBackup="true"
 			android:icon="@mipmap/ic_launcher"
 			android:label="@string/app_name">
+
+		<!--Copied from: https://github.com/ilanyu/VpnBypass, Thanks: @ilanyu-->
+		<meta-data
+				android:name="xposedmodule"
+				android:value="true" />
+		<meta-data
+				android:name="xposeddescription"
+				android:value="ByPass App's VPN check" />
+		<meta-data
+				android:name="xposedminversion"
+				android:value="30" />
+
 		<activity android:name=".MainActivity" android:label="@string/app_name">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
