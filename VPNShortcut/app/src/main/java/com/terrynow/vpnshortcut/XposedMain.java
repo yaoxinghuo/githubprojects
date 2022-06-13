@@ -1,20 +1,14 @@
 package com.terrynow.vpnshortcut;
 
-import android.app.Application;
-import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
-
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-/**
- * Copied from: https://github.com/ilanyu/VpnBypass, Thanks: @ilanyu
- */
 public class XposedMain implements IXposedHookLoadPackage {
 
     @Override
@@ -25,19 +19,23 @@ public class XposedMain implements IXposedHookLoadPackage {
         }
         XposedBridge.log("com.terrynow.vpnshortcut Loaded app: " + lpparam.packageName);
 
-        hook(lpparam.classLoader);
+        hook(lpparam);
 
-//        XposedHelpers.findAndHookMethod(Application.class, "attach", Context.class, new XC_MethodHook() {
-//            @Override
-//            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-//                super.afterHookedMethod(param);
-//                ClassLoader classLoader = ((Context) param.args[0]).getClassLoader();
-//                hook(classLoader);
-//            }
-//        });
+        new Timing(lpparam, false) {
+            @Override
+            protected void onNewActivity(XC_MethodHook.MethodHookParam param) {
+                super.onNewActivity(param);
+                try {
+                    hook(lpparam);
+                } catch (Exception e) {
+                    XposedBridge.log(e.getLocalizedMessage());
+                }
+            }
+        };
     }
 
-    public void hook(ClassLoader classLoader) {
+    public void hook(final XC_LoadPackage.LoadPackageParam lpparam) {
+        ClassLoader classLoader = lpparam.classLoader;
         XposedHelpers.findAndHookMethod("java.lang.System", classLoader, "getProperty", String.class, new XC_MethodHook() {
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
@@ -46,7 +44,7 @@ public class XposedMain implements IXposedHookLoadPackage {
                     String result = (String) param.getResult();
                     if (result != null) {
                         param.setResult(null);
-                        XposedBridge.log("com.terrynow.vpnshortcut modify java.lang.System.getProperty(http.proxyHost) return null");
+                        XposedBridge.log("com.terrynow.vpnshortcut hook " + lpparam.packageName + " modify java.lang.System.getProperty(http.proxyHost) return null");
                     }
                 }
             }
@@ -58,7 +56,7 @@ public class XposedMain implements IXposedHookLoadPackage {
                 String result = (String) param.getResult();
                 if (result.startsWith("tun") || result.startsWith("ppp")) {
                     param.setResult("rmnet_data0");
-                    XposedBridge.log("com.terrynow.vpnshortcut java.net.NetworkInterface.getName return " + result + " modify to rmnet_data0");
+                    XposedBridge.log("com.terrynow.vpnshortcut hook " + lpparam.packageName + " java.net.NetworkInterface.getName return " + result + " modify to rmnet_data0");
                 }
             }
         });
@@ -71,7 +69,7 @@ public class XposedMain implements IXposedHookLoadPackage {
                     boolean result = (boolean) param.getResult();
                     if (result) {
                         param.setResult(false);
-                        XposedBridge.log("com.terrynow.vpnshortcut modify android.net.NetworkInfo(ConnectivityManager.TYPE_VPN).isConnectedOrConnecting return false");
+                        XposedBridge.log("com.terrynow.vpnshortcut hook " + lpparam.packageName + " modify android.net.NetworkInfo(ConnectivityManager.TYPE_VPN).isConnectedOrConnecting return false");
                     }
                 }
             }
@@ -86,7 +84,7 @@ public class XposedMain implements IXposedHookLoadPackage {
                     boolean result = (boolean) param.getResult();
                     if (result) {
                         param.setResult(false);
-                        XposedBridge.log("com.terrynow.vpnshortcut modify android.net.NetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN) return false");
+                        XposedBridge.log("com.terrynow.vpnshortcut hook " + lpparam.packageName + " modify android.net.NetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN) return false");
                     }
                 }
             }
